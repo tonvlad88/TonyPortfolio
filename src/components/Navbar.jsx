@@ -3,29 +3,8 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { navItems } from "../constants";
 
-const navItems = [
-  {
-    name: "Home",
-    href: "#hero",
-  },
-  {
-    name: "About",
-    href: "#about",
-  },
-  {
-    name: "Skills",
-    href: "#skills",
-  },
-  {
-    name: "Projects",
-    href: "#projects",
-  },
-  {
-    name: "Contact",
-    href: "#contact",
-  },
-];
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
