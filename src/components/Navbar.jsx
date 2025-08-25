@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 const navItems = [
   {
     name: "Home",
@@ -51,6 +53,7 @@ export const Navbar = () => {
         >
           <span className="relative z-10">
             <span className="text-glow text-foreground">TonyPH</span> Portfolio
+            <ThemeToggle />
           </span>
         </a>
 
@@ -68,7 +71,6 @@ export const Navbar = () => {
         </div>
 
         {/* mobile nav */}
-
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
