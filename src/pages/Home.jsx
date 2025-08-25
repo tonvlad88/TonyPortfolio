@@ -1,4 +1,8 @@
-import { ThemeToggle } from "../components/ThemeToggle";
+import { StarBackground } from "@/components/StarBackground";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Navbar } from "@/components/Navbar";
+import { HeroSection } from "@/components/HeroSection";
+import { About } from "@/components/About";
 
 export default function Home() {
   return (
@@ -7,10 +11,16 @@ export default function Home() {
       <ThemeToggle />
 
       {/* Background effects */}
+      <StarBackground />
 
       {/* Navbar */}
+      <Navbar />
 
       {/* Main Content */}
+      <main>
+        <HeroSection />
+        <About />
+      </main>
 
       {/* Footer */}
     </div>
