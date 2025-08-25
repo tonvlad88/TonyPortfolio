@@ -64,29 +64,22 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-
-    --primary: 250 47% 60%;
-    --primary-foreground: 210 40% 98%;
-
-    --border: 214 32% 91%;
+    --background: 210 20% 95%; /* light slate */
+    --foreground: 215 25% 20%; /* dark slate */
+    --card: 210 20% 98%;
+    --primary: 180 50% 40%; /* teal */
+    --primary-foreground: 210 20% 95%;
+    --border: 210 15% 85%;
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-
-    --card: 222 47% 8%;
-
-    --primray: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
-
-    --border: 217 33% 20%;
+    --background: 215 25% 10%;
+    --foreground: 180 50% 90%;
+    --card: 215 25% 15%;
+    --primary: 180 50% 50%;
+    --primary-foreground: 210 20% 95%;
+    --border: 215 15% 25%;
   }
-
   * {
     @apply border-border;
   }
