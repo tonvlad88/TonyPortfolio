@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +21,15 @@ export const ContactSection = () => {
 
     setTimeout(() => {
       setIsSubmitting(false);
+      showSuccess();
+      e.target.reset();
     }, 1500);
+  };
+
+  const showSuccess = () => {
+    toast.success("👋 Your message is on its way.", {
+      position: "top-right",
+    });
   };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -171,6 +180,8 @@ export const ContactSection = () => {
             </form>
           </div>
         </div>
+
+        <ToastContainer />
       </div>
     </section>
   );
