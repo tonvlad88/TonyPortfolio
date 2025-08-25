@@ -110,7 +110,7 @@ const projects = [
     id: 6,
     title: "Lykkebo",
     description: "A painting service mobile application in Denmark.",
-    type: "prototype",
+    type: "corporate",
     image: "/projects/lykkebo.png",
     tags: [
       "React Native",
@@ -150,6 +150,19 @@ const projects = [
     demoUrl: "https://ecommerce-plp.vercel.app/",
     githubUrl: "https://github.com/tonvlad88/ecommerce-plp",
   },
+  {
+    id: 8,
+    title: "Canco Cash",
+    description: "Real-time gas station promotions in Canada",
+    type: "corporate",
+    image: "/projects/canco.png",
+    tags: ["Flutter", "Bootstrap", "TypeScript", "JavaScript"],
+    demoUrl: "",
+    githubUrl: "",
+    googlePlaystoreUrl:
+      "https://play.google.com/store/apps/details?id=com.ackroo.canco&hl=en",
+    appstoreUrl: "https://apps.apple.com/kh/app/canco-petroleum/id1523902717",
+  },
 ];
 
 export const ProjectsSection = () => {
@@ -168,25 +181,28 @@ export const ProjectsSection = () => {
           confident engineering, and user-centric experiences.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-6 md:grid-cols-3 items-stretch">
           {projects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="h-48 overflow-hidden">
+              {/* Fixed image */}
+              <div className="h-48 overflow-hidden shrink-0">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transfor duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
 
-              <div className="p-6">
+              {/* Flexible content */}
+              <div className="p-6 flex flex-col flex-1">
+                {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, key) => (
+                  {project.tags.map((tag, i) => (
                     <span
-                      key={key}
+                      key={i}
                       className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
                     >
                       {tag}
@@ -194,15 +210,27 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                {/* Title + Prototype */}
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold">{project.title}</h3>
+                  {project.type === "prototype" && (
+                    <span className="mt-1 inline-block text-[10px] font-medium uppercase tracking-wide bg-primary/10 text-primary px-2 py-0.5 rounded animate-pulse">
+                      Prototype
+                    </span>
+                  )}
+                </div>
+
+                {/* Description */}
                 <p className="text-muted-foreground text-sm mb-4">
                   {project.description}
                 </p>
-                <div className="flex justify-between items-center">
+
+                {/* Links pinned to bottom */}
+                <div className="mt-auto pt-4">
                   <div className="flex space-x-3">
                     {project.appstoreUrl && (
                       <a
-                        href="https://apps.apple.com/app/idYOUR_APP_ID"
+                        href={project.appstoreUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:opacity-80 transition"
@@ -217,7 +245,7 @@ export const ProjectsSection = () => {
 
                     {project.googlePlaystoreUrl && (
                       <a
-                        href="https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME"
+                        href={project.googlePlaystoreUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:opacity-80 transition"

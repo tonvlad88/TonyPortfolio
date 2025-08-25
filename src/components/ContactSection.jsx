@@ -6,6 +6,7 @@ import {
   MapPin,
   Phone,
   Send,
+  Twitch,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -44,7 +45,7 @@ export const ContactSection = () => {
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Email</h4>
+                  <h4 className="font-medium text-start">Email</h4>
                   <a
                     href="mailto:tonysaromines@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -59,7 +60,7 @@ export const ContactSection = () => {
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Phone</h4>
+                  <h4 className="font-medium text-start">Phone</h4>
                   <a
                     href="tel:+639176291740"
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -74,7 +75,7 @@ export const ContactSection = () => {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Location</h4>
+                  <h4 className="font-medium text-start">Location</h4>
                   <a className="text-muted-foreground hover:text-primary transition-colors">
                     Casa Mira South, Naga City, Cebu
                   </a>
@@ -83,16 +84,22 @@ export const ContactSection = () => {
             </div>
 
             <div className="pt-8">
-              <h4 className="font-medium mb-4">Connect With Me</h4>
+              <h4 className="font-medium mb-4">Connect With Socials</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/tonysaromines/"
+                  target="_blank"
+                >
                   <Linkedin />
                 </a>
-                <a href="#" target="_blank">
+                <a
+                  href="https://www.facebook.com/anthony.e.saromines/"
+                  target="_blank"
+                >
                   <Facebook />
                 </a>
-                <a href="#" target="_blank">
-                  <Instagram />
+                <a href="https://www.twitch.tv/tonyotvph" target="_blank">
+                  <Twitch />
                 </a>
               </div>
             </div>

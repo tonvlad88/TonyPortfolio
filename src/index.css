@@ -60,6 +60,28 @@
       opacity: 0;
     }
   }
+
+  @keyframes pulse-highlight {
+    0%,
+    100% {
+      color: inherit;
+      transform: scale(1);
+    }
+    50% {
+      color: hsl(var(--primary));
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes glow-highlight {
+    0%,
+    100% {
+      text-shadow: none;
+    }
+    50% {
+      text-shadow: 0 0 8px hsl(var(--primary));
+    }
+  }
 }
 
 @layer base {
@@ -152,4 +174,8 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+}
+
+.animate-pulse-highlight {
+  animation: pulse-highlight 1.5s ease-in-out infinite;
 }

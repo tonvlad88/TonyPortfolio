@@ -18,13 +18,16 @@ export const HeroSection = () => {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            Results-driven developer with over 10 years of experience in
-            application software development. Specializes in React Native and
-            cross-platform architecture with a strong history of deploying
-            scalable apps for diverse industries. Skilled in leading technical
-            decisions, collaborating across teams, and integrating secure,
-            user-centric solutions. Passionate about intuitive UX and continuous
-            learning.
+            Results-driven developer with over{" "}
+            <span className="font-semibold animate-pulse-highlight px-2 bg-primary/20 text-primary drop-shadow-md">
+              10 years
+            </span>{" "}
+            of experience in applications software development. Specializes in
+            React Native and cross-platform architecture with a strong history
+            of deploying scalable apps for diverse industries. Skilled in
+            leading technical decisions, collaborating across teams, and
+            integrating secure, user-centric solutions. Passionate about
+            intuitive UX and continuous learning.
           </p>
         </div>
 
