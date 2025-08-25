@@ -19,7 +19,7 @@ export const HeroSection = () => {
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
             Results-driven developer with over 10 years of experience in
-            full-stack and mobile development. Specializes in React Native and
+            application software development. Specializes in React Native and
             cross-platform architecture with a strong history of deploying
             scalable apps for diverse industries. Skilled in leading technical
             decisions, collaborating across teams, and integrating secure,

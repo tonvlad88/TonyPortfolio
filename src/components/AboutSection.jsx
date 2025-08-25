@@ -11,27 +11,37 @@ export const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Passionate web developer & Mobile Creator
-            </h3>
             <p className="text-muted-foreground">
-              Results-driven developer with over 10 years of experience in
-              full-stack and mobile development. Specializes in React Native and
-              cross-platform architecture with a strong history of deploying
-              scalable apps for diverse industries. Skilled in leading technical
-              decisions, collaborating across teams, and integrating secure,
-              user-centric solutions. Passionate about intuitive UX and
-              continuous learning.
+              Hi, I’m Tony — a React Native engineer with a passion for crafting
+              polished, user-centric experiences across mobile and web. I
+              specialize in building scalable, performant apps using modern
+              architecture, TypeScript, and Expo, with a strong focus on
+              accessibility, animation, and offline-first strategies.
             </p>
 
             <p className="text-muted-foreground">
-              Results-driven developer with over 10 years of experience in
-              full-stack and mobile development. Specializes in React Native and
-              cross-platform architecture with a strong history of deploying
-              scalable apps for diverse industries. Skilled in leading technical
-              decisions, collaborating across teams, and integrating secure,
-              user-centric solutions. Passionate about intuitive UX and
-              continuous learning.
+              Beyond the code, I’m a meticulous problem-solver who thrives on
+              clear communication and strategic thinking. I approach every
+              project with empathy — not just for users, but for clients and
+              collaborators. Whether I’m structuring a repo for long-term
+              maintainability or preparing thoughtful questions to align with a
+              client’s business goals, I aim to deliver work that’s both
+              technically sound and context-aware.
+            </p>
+
+            <p className="text-muted-foreground">
+              I’m currently focused on leveling up my craft through continuous
+              learning, benchmarking against senior standards, and refining my
+              portfolio with production-ready demo apps. I believe great
+              software isn’t just built — it’s understood, felt, and
+              experienced.
+            </p>
+
+            <p className="text-muted-foreground">
+              Let’s build something{" "}
+              <span className="font-semibold text-primary italic">
+                meaningful.
+              </span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -40,7 +50,8 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href="#contact"
+                target="_blank"
+                href="/resume.pdf"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV
@@ -57,9 +68,11 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Mobile Development</h4>
                   <p className="text-muted-foreground">
-                    Experienced web, desktop, and mobile development with a
-                    demonstrated history of working in the information
-                    technology and services industry.
+                    I specialize in building performant, offline-ready mobile
+                    apps using React Native and Expo CLI. My focus is on
+                    delivering smooth animations, intuitive UX, and scalable
+                    architecture — all wrapped in clean, maintainable
+                    TypeScript.
                   </p>
                 </div>
               </div>
@@ -72,9 +85,11 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Web Development</h4>
                   <p className="text-muted-foreground">
-                    Experienced web, desktop, and mobile development with a
-                    demonstrated history of working in the information
-                    technology and services industry.
+                    On the web, I bring modern frameworks like Next.js and React
+                    to life with a strong emphasis on accessibility,
+                    responsiveness, and performance. From frontend polish to
+                    backend integration, I build web platforms that are fast,
+                    flexible, and user-focused.
                   </p>
                 </div>
               </div>
@@ -87,9 +102,10 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Project Management</h4>
                   <p className="text-muted-foreground">
-                    Experienced web, desktop, and mobile development with a
-                    demonstrated history of working in the information
-                    technology and services industry.
+                    I lead with empathy and clarity — translating business goals
+                    into actionable tech strategies. My approach blends agile
+                    execution with proactive communication, ensuring alignment
+                    across stakeholders and dev teams.
                   </p>
                 </div>
               </div>

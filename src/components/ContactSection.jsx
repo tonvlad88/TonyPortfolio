@@ -64,7 +64,7 @@ export const ContactSection = () => {
                     href="tel:+639176291740"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +63 917-629-1740
+                    (+63) 917-629-1740
                   </a>
                 </div>
               </div>
