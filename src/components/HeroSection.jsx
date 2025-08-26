@@ -18,7 +18,7 @@ export const HeroSection = () => {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            Results-driven developer with over{" "}
+            Innovative and detail-oriented developer with over{" "}
             <span className="font-semibold animate-pulse-highlight px-2 bg-primary/20 text-primary drop-shadow-md">
               10 years
             </span>{" "}
