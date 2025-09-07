@@ -6,31 +6,63 @@ import {
   Phone,
   Send,
   Twitch,
+  Construction,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { db } from "../../firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formLoadTime, setFormLoadTime] = useState(0);
+  const isUnderConstruction = false; // toggle if you want to disable form
 
-  const handleSubmit = (e) => {
+  // Record when the form first renders
+  useEffect(() => {
+    setFormLoadTime(Date.now());
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 🛡 Honeypot check — skip if filled
+    if (e.target.website.value) {
+      console.warn("Spam detected via honeypot — ignoring submission");
+      return;
+    }
+
+    // 🛡 Time-based check — skip if submitted too quickly
+    const timeElapsed = (Date.now() - formLoadTime) / 1000;
+    if (timeElapsed < 2) {
+      console.warn("Spam detected via quick submit — ignoring submission");
+      return;
+    }
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      showSuccess();
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+      createdAt: serverTimestamp(),
+    };
+
+    try {
+      await addDoc(collection(db, "contactMessages"), formData);
+      toast.success("👋 Your message has been saved.", {
+        position: "top-right",
+      });
       e.target.reset();
-    }, 1500);
+    } catch (error) {
+      toast.error("❌ Failed to send message. Please try again.");
+      console.error("Error saving message:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const showSuccess = () => {
-    toast.success("👋 Your message is on its way.", {
-      position: "top-right",
-    });
-  };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -44,6 +76,7 @@ export const ContactSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Contact Info */}
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
 
@@ -84,9 +117,9 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-start">Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
+                  <span className="text-muted-foreground">
                     Casa Mira South, Naga City, Cebu
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -113,10 +146,44 @@ export const ContactSection = () => {
             </div>
           </div>
 
+          {/* Contact Form */}
           <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
+            {/* Info message */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 mb-6 bg-blue-50 border border-blue-200 rounded-md text-blue-800">
+              <span className="font-medium text-center sm:text-left leading-relaxed">
+                📌 When you contact me using this form, your message will be
+                stored in my Firebase console for reference only. Thank you!
+              </span>
+            </div>
+
+            {isUnderConstruction && (
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 mb-6 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-800">
+                <Construction size={24} className="text-yellow-700" />
+                <span className="font-medium text-center sm:text-left leading-relaxed">
+                  This form is currently under construction. Please email me
+                  directly at{" "}
+                  <a
+                    href="mailto:tonysaromines@gmail.com"
+                    className="underline text-yellow-900 hover:text-yellow-700 break-all"
+                  >
+                    tonysaromines@gmail.com
+                  </a>
+                </span>
+              </div>
+            )}
+
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field */}
+              <input
+                type="text"
+                name="website"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div>
                 <label
                   htmlFor="name"
@@ -129,7 +196,8 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  disabled={isUnderConstruction}
+                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary disabled:opacity-50"
                   placeholder="your name..."
                 />
               </div>
@@ -146,7 +214,8 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  disabled={isUnderConstruction}
+                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary disabled:opacity-50"
                   placeholder="user@gmail.com"
                 />
               </div>
@@ -162,36 +231,24 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
+                  disabled={isUnderConstruction}
+                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none disabled:opacity-50"
                   placeholder="type your message here..."
                 />
               </div>
 
               <button
-                disabled={isSubmitting}
+                disabled={isSubmitting || isUnderConstruction}
                 type="submit"
                 className={cn(
                   "cosmic-button w-full flex items-center justify-center gap-2",
-                  "opacity-50 cursor-not-allowed pointer-events-none", // disabled look
-                  "hover:bg-primary hover:text-white hover:shadow-none" // optional: remove hover effects
+                  (isSubmitting || isUnderConstruction) &&
+                    "opacity-50 cursor-not-allowed pointer-events-none"
                 )}
               >
-                {isSubmitting ? "Sending... " : "Submit"}
+                {isSubmitting ? "Sending..." : "Submit"}
                 <Send size={16} />
               </button>
-
-              <div className="flex items-center gap-3 p-4 mb-6 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-800">
-                <span className="font-medium">
-                  This form is currently under construction. Please check back
-                  or please email me directly at{" "}
-                  <a
-                    href="mailto:tonysaromines@gmail.com"
-                    className="underline text-yellow-900 hover:text-yellow-700"
-                  >
-                    tonysaromines@gmail.com
-                  </a>
-                </span>
-              </div>
             </form>
           </div>
         </div>
