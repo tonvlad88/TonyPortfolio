@@ -171,12 +171,27 @@ export const ContactSection = () => {
                 disabled={isSubmitting}
                 type="submit"
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
+                  "cosmic-button w-full flex items-center justify-center gap-2",
+                  "opacity-50 cursor-not-allowed pointer-events-none", // disabled look
+                  "hover:bg-primary hover:text-white hover:shadow-none" // optional: remove hover effects
                 )}
               >
                 {isSubmitting ? "Sending... " : "Submit"}
                 <Send size={16} />
               </button>
+
+              <div className="flex items-center gap-3 p-4 mb-6 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-800">
+                <span className="font-medium">
+                  This form is currently under construction. Please check back
+                  or please email me directly at{" "}
+                  <a
+                    href="mailto:tonysaromines@gmail.com"
+                    className="underline text-yellow-900 hover:text-yellow-700"
+                  >
+                    tonysaromines@gmail.com
+                  </a>
+                </span>
+              </div>
             </form>
           </div>
         </div>
