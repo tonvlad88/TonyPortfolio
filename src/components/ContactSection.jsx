@@ -1,204 +1,162 @@
-import {
-  Facebook,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitch,
-  Construction,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import { Github, Linkedin, Mail, MapPin, Send, Twitch } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { db } from "../../firebaseConfig";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import "react-toastify/ReactToastify.css";
+
+import { cn } from "@/lib/utils";
+import { socials } from "@/constants";
+import { saveContactMessage } from "@/lib/firebase";
+
+const socialIcons = { github: Github, linkedin: Linkedin, twitch: Twitch };
+
+const MIN_FILL_SECONDS = 2;
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formLoadTime, setFormLoadTime] = useState(0);
-  const isUnderConstruction = false; // toggle if you want to disable form
+  const formLoadTime = useRef(Date.now());
 
-  // Record when the form first renders
   useEffect(() => {
-    setFormLoadTime(Date.now());
+    formLoadTime.current = Date.now();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
 
-    // 🛡 Honeypot check — skip if filled
-    if (e.target.website.value) {
-      console.warn("Spam detected via honeypot — ignoring submission");
-      return;
-    }
+    // Honeypot: real users never see this field, bots fill everything.
+    if (form.website.value) return;
 
-    // 🛡 Time-based check — skip if submitted too quickly
-    const timeElapsed = (Date.now() - formLoadTime) / 1000;
-    if (timeElapsed < 2) {
-      console.warn("Spam detected via quick submit — ignoring submission");
-      return;
-    }
+    // Bots also submit near-instantly; humans take a few seconds to type.
+    const secondsElapsed = (Date.now() - formLoadTime.current) / 1000;
+    if (secondsElapsed < MIN_FILL_SECONDS) return;
 
     setIsSubmitting(true);
 
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      message: e.target.message.value,
-      createdAt: serverTimestamp(),
-    };
-
     try {
-      await addDoc(collection(db, "contactMessages"), formData);
-      toast.success("👋 Your message has been saved.", {
-        position: "top-right",
+      await saveContactMessage({
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
       });
-      e.target.reset();
+
+      toast.success("Thanks — your message is through. I'll reply soon.");
+      form.reset();
+      formLoadTime.current = Date.now();
     } catch (error) {
-      toast.error("❌ Failed to send message. Please try again.");
-      console.error("Error saving message:", error);
+      toast.error(
+        "Something went wrong sending that. Please email me directly instead."
+      );
+      console.error("Failed to save contact message:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const fieldClass =
+    "w-full px-4 py-3 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors";
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
+          Get In <span className="text-primary">Touch</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          We look forward to assisting you and starting a meaningful
-          conversation.
+          Hiring, contracting, or just want to compare notes on React Native?
+          Send a message and I&rsquo;ll get back to you within one or two
+          business days.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+          {/* Contact details */}
           <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-semibold">Contact Information</h3>
 
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10 shrink-0">
+                  <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-start">Email</h4>
+                  <h4 className="font-medium">Email</h4>
                   <a
                     href="mailto:tonysaromines@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors break-all"
                   >
                     tonysaromines@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10 shrink-0">
+                  <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-start">Phone</h4>
-                  <a
-                    href="tel:+639176291740"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    (+63) 917-629-1740
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-start">Location</h4>
-                  <span className="text-muted-foreground">
-                    Casa Mira South, Naga City, Cebu
-                  </span>
+                  <h4 className="font-medium">Location</h4>
+                  <p className="text-muted-foreground">
+                    Cebu, Philippines &middot; open to remote
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-medium mb-4">Connect With Socials</h4>
-              <div className="flex space-x-4 justify-center">
-                <a
-                  href="https://www.linkedin.com/in/tonysaromines/"
-                  target="_blank"
-                >
-                  <Linkedin />
-                </a>
-                <a
-                  href="https://www.facebook.com/anthony.e.saromines/"
-                  target="_blank"
-                >
-                  <Facebook />
-                </a>
-                <a href="https://www.twitch.tv/tonyotvph" target="_blank">
-                  <Twitch />
-                </a>
-              </div>
+            <div className="pt-4">
+              <h4 className="font-medium mb-4">Elsewhere</h4>
+              <ul className="flex gap-3">
+                {socials.map((social) => {
+                  const Icon = socialIcons[social.icon];
+                  return (
+                    <li key={social.name}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        className="inline-flex p-2.5 rounded-full border border-border text-foreground/80 hover:text-primary hover:border-primary transition-colors"
+                      >
+                        <Icon size={20} aria-hidden="true" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-card p-8 rounded-lg shadow-xs">
+          {/* Contact form */}
+          <div className="bg-card text-card-foreground p-8 rounded-lg border border-border">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
-            {/* Info message */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 mb-6 bg-blue-50 border border-blue-200 rounded-md text-blue-800">
-              <span className="font-medium text-center sm:text-left leading-relaxed">
-                📌 When you contact me using this form, your message will be
-                stored in my Firebase console for reference only. Thank you!
-              </span>
-            </div>
-
-            {isUnderConstruction && (
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 mb-6 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-800">
-                <Construction size={24} className="text-yellow-700" />
-                <span className="font-medium text-center sm:text-left leading-relaxed">
-                  This form is currently under construction. Please email me
-                  directly at{" "}
-                  <a
-                    href="mailto:tonysaromines@gmail.com"
-                    className="underline text-yellow-900 hover:text-yellow-700 break-all"
-                  >
-                    tonysaromines@gmail.com
-                  </a>
-                </span>
-              </div>
-            )}
-
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Honeypot field */}
-              <input
-                type="text"
-                name="website"
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
-              />
+              {/* Honeypot — hidden from users and assistive tech alike */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Leave this field empty</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
 
               <div>
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Name
+                  Your name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  disabled={isUnderConstruction}
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary disabled:opacity-50"
-                  placeholder="your name..."
+                  autoComplete="name"
+                  className={fieldClass}
+                  placeholder="Jane Dela Cruz"
                 />
               </div>
 
@@ -207,16 +165,16 @@ export const ContactSection = () => {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Email
+                  Your email
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  disabled={isUnderConstruction}
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary disabled:opacity-50"
-                  placeholder="user@gmail.com"
+                  autoComplete="email"
+                  className={fieldClass}
+                  placeholder="jane@company.com"
                 />
               </div>
 
@@ -225,35 +183,44 @@ export const ContactSection = () => {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Message
+                  Your message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  disabled={isUnderConstruction}
-                  className="w-full px-4 py-3 rounded-mb border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none disabled:opacity-50"
-                  placeholder="type your message here..."
+                  rows={5}
+                  className={cn(fieldClass, "resize-y min-h-32")}
+                  placeholder="A little about the role or project…"
                 />
               </div>
 
               <button
-                disabled={isSubmitting || isUnderConstruction}
                 type="submit"
+                disabled={isSubmitting}
                 className={cn(
                   "cosmic-button w-full flex items-center justify-center gap-2",
-                  (isSubmitting || isUnderConstruction) &&
-                    "opacity-50 cursor-not-allowed pointer-events-none"
+                  isSubmitting && "opacity-60 cursor-not-allowed"
                 )}
               >
-                {isSubmitting ? "Sending..." : "Submit"}
-                <Send size={16} />
+                {isSubmitting ? "Sending…" : "Send Message"}
+                <Send size={16} aria-hidden="true" />
               </button>
+
+              <p className="text-xs text-muted-foreground">
+                Your message is stored privately so I can reply — it is never
+                shared or used for marketing.
+              </p>
             </form>
           </div>
         </div>
 
-        <ToastContainer />
+        <ToastContainer
+          position="top-right"
+          theme="colored"
+          autoClose={5000}
+          newestOnTop
+        />
       </div>
     </section>
   );

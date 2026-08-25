@@ -1,10 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/tonyph.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TonyPH Portfolio</title>
+
+    <title>Tony Saromines — Senior React Native Engineer</title>
+    <meta
+      name="description"
+      content="Mark Anthony (Tony) Saromines — senior React Native engineer with 10 years building cross-platform mobile and web apps shipped to the App Store and Google Play. Available for remote roles and freelance work."
+    />
+    <meta name="author" content="Mark Anthony Saromines" />
+    <link rel="canonical" href="https://tonyph-portfolio.vercel.app/" />
+    <meta name="theme-color" content="#0f1621" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="191x191" href="/tonyph.png" />
+    <link rel="apple-touch-icon" href="/tonyph.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tony Saromines" />
+    <meta property="og:url" content="https://tonyph-portfolio.vercel.app/" />
+    <meta
+      property="og:title"
+      content="Tony Saromines — Senior React Native Engineer"
+    />
+    <meta
+      property="og:description"
+      content="10 years building cross-platform mobile and web apps shipped to the App Store and Google Play. React Native, Expo, TypeScript."
+    />
+    <!-- TODO: replace with a purpose-made 1200x630 share image at /og-image.png -->
+    <meta
+      property="og:image"
+      content="https://tonyph-portfolio.vercel.app/tonyph.png"
+    />
+    <meta property="og:image:alt" content="Tony Saromines portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Tony Saromines — Senior React Native Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="10 years building cross-platform mobile and web apps shipped to the App Store and Google Play. React Native, Expo, TypeScript."
+    />
+    <meta
+      name="twitter:image"
+      content="https://tonyph-portfolio.vercel.app/tonyph.png"
+    />
+
+    <!--
+      Apply the stored theme before first paint so there is no flash of the
+      wrong theme. Must stay inline and blocking.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          var useDark = stored ? stored === "dark" : prefersDark;
+          document.documentElement.classList.toggle("dark", useDark);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mark Anthony Saromines",
+        "alternateName": "Tony Saromines",
+        "url": "https://tonyph-portfolio.vercel.app/",
+        "jobTitle": "Senior React Native Engineer",
+        "email": "mailto:tonysaromines@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Cebu",
+          "addressCountry": "PH"
+        },
+        "sameAs": [
+          "https://github.com/tonvlad88",
+          "https://www.linkedin.com/in/tonysaromines/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

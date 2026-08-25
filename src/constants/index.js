@@ -1,41 +1,49 @@
 export const navItems = [
-  {
-    name: "Home",
-    href: "#hero",
-  },
-  {
-    name: "About",
-    href: "#about",
-  },
-  {
-    name: "Skills",
-    href: "#skills",
-  },
-  {
-    name: "Projects",
-    href: "#projects",
-  },
-  {
-    name: "Contact",
-    href: "#contact",
-  },
+  { name: "Home", href: "#hero" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
+export const socials = [
+  { name: "GitHub", href: "https://github.com/tonvlad88", icon: "github" },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/tonysaromines/",
+    icon: "linkedin",
+  },
+  { name: "Twitch", href: "https://www.twitch.tv/tonyotvph", icon: "twitch" },
+];
+
+/**
+ * TODO (Tony): fill in `role`, `period`, and `highlights` for each project.
+ * Recruiters skim for what YOU did, not what the app is. Two concrete bullets
+ * each — a decision you made, a number you moved — are worth more than the
+ * rest of this page combined. Fields left empty simply do not render.
+ *
+ *   role:       e.g. "Lead React Native Developer"
+ *   period:     e.g. "2023 — 2024"
+ *   highlights: e.g. ["Cut the booking flow from 4 taps to 1", "4.6★, 12k installs"]
+ */
 export const projects = [
   {
     id: 1,
     title: "PadelLink",
-    description: "Social platform for padel sports in Denmark",
-    type: "corporate",
+    description:
+      "Court booking and social platform for Denmark’s padel community.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/padellink.png",
     tags: [
       "React Native",
-      "TailwindCSS",
       "TypeScript",
       "tRPC",
-      "MySQL",
-      "JavaScript",
       "Redux",
+      "TailwindCSS",
+      "MySQL",
     ],
     demoUrl: "",
     githubUrl: "",
@@ -45,53 +53,15 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Ice Angel App",
+    title: "My Unique Moments",
     description:
-      "Ice Angel is a mobile shopping experience designed to bring nature’s healing touch to your fingertips.",
-    type: "prototype",
-    image: "/projects/iceangel.png",
-    tags: [
-      "React Native",
-      "Expo CLI",
-      "NodeJS",
-      "MySQL",
-      "REST API",
-      "JavaScript",
-      "Context API",
-    ],
-    demoUrl:
-      "https://drive.google.com/file/d/18whzV5bqel4WAuukzIdETokOLvBy1zKU/view?usp=drive_link",
-    githubUrl: "",
-  },
-  {
-    id: 3,
-    title: "Prime Booker",
-    description:
-      "A mobile app used for centralizing rental spaces and service facilities within cebu area.",
-    type: "prototype",
-    image: "/projects/primebooker.png",
-    tags: [
-      "React Native",
-      "Bootstrap",
-      "Expo CLI",
-      "Firebase",
-      "NodeJS",
-      "REST API",
-      "JavaScript",
-      "Context API",
-    ],
-    demoUrl:
-      "https://drive.google.com/file/d/18_OUxa-1cL9tUzw2rVpgE8kZqnTP4ydx/view?usp=sharing",
-    githubUrl: "",
-  },
-  {
-    id: 4,
-    title: "My Unique Moments (MUM)",
-    description:
-      "All-in-one tool that helps you conveniently track your child’s well-being, early development and precious little moments.",
-    type: "corporate",
+      "Parenting companion for Danone that tracks a child’s growth, early development milestones, and everyday moments.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/mum.png",
-    tags: ["React Native", "Bootstrap", "JavaScript"],
+    tags: ["React Native", "JavaScript", "Bootstrap"],
     demoUrl: "",
     githubUrl: "",
     googlePlaystoreUrl:
@@ -99,22 +69,33 @@ export const projects = [
     appstoreUrl: "https://apps.apple.com/sg/app/myuniquemoments/id1480197334",
   },
   {
-    id: 5,
+    id: 3,
+    title: "Canco Cash",
+    description:
+      "Loyalty and real-time fuel promotions app for a Canadian petroleum retailer.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
+    image: "/projects/canco.png",
+    tags: ["Flutter", "TypeScript", "JavaScript", "Bootstrap"],
+    demoUrl: "",
+    githubUrl: "",
+    googlePlaystoreUrl:
+      "https://play.google.com/store/apps/details?id=com.ackroo.canco&hl=en",
+    appstoreUrl: "https://apps.apple.com/kh/app/canco-petroleum/id1523902717",
+  },
+  {
+    id: 4,
     title: "Deskma",
     description:
-      "A business solution service type mobile application focusing mainly on craftsmen in Denmark.",
-    type: "corporate",
+      "Field service management app for craftsmen in Denmark — job scheduling, time tracking, and reporting.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/deskma.png",
-    tags: [
-      "React Native",
-      "Bootstrap",
-      "Expo CLI",
-      "Typo3CMS",
-      "PHP",
-      "PostgreSQL",
-      "JavaScript",
-      "Redux",
-    ],
+    tags: ["React Native", "Expo", "Redux", "PHP", "PostgreSQL", "Typo3 CMS"],
     demoUrl: "",
     githubUrl: "",
     googlePlaystoreUrl:
@@ -122,21 +103,16 @@ export const projects = [
     appstoreUrl: "https://apps.apple.com/kz/app/deskma/id1273993979",
   },
   {
-    id: 6,
+    id: 5,
     title: "Lykkebo",
-    description: "A painting service mobile application in Denmark.",
-    type: "corporate",
+    description:
+      "Booking and job-management app for a Danish painting and decorating firm.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/lykkebo.png",
-    tags: [
-      "React Native",
-      "Bootstrap",
-      "Expo CLI",
-      "Redux",
-      "Firebase",
-      "PHP",
-      "REST API",
-      "JavaScript",
-    ],
+    tags: ["React Native", "Expo", "Redux", "Firebase", "PHP", "REST API"],
     demoUrl: "",
     githubUrl: "",
     googlePlaystoreUrl:
@@ -144,93 +120,161 @@ export const projects = [
     appstoreUrl: "https://apps.apple.com/dk/app/lykkebo/id1457820094",
   },
   {
-    id: 7,
+    id: 6,
     title: "Singapore Night Festival",
     description:
-      "A web app that light up the Bras Basah.Bugis (BBB) precinct with the theme “Singapore, the Great Port City”",
-    type: "corporate",
+      "Official festival web app for the Bras Basah·Bugis precinct, built around the theme “Singapore, the Great Port City”.",
+    type: "client",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/snf.png",
-    tags: ["ReactJS", "Bootstrap", "Context API", "NodeJS", "JavaScript"],
+    tags: ["ReactJS", "NodeJS", "Context API", "JavaScript", "Bootstrap"],
     demoUrl: "https://www.heritage.sg/sgnightfest",
     githubUrl: "",
   },
   {
     id: 7,
-    title: "ECommerce PLP",
+    title: "E-Commerce PLP",
     description:
-      "A mini e-commerce web application focused solely on building a high-quality Product Listing Page (PLP) showcasing products with images, names and vital product information",
-    type: "prototype",
+      "A production-grade product listing page — server-rendered, filterable, and accessible — built to benchmark Next.js patterns.",
+    type: "personal",
+    role: "",
+    period: "",
+    highlights: [],
     image: "/projects/nextjs-ecommerce-plp.png",
-    tags: ["NextJS", "TailwindCSS", "TypeScript", "JavaScript"],
+    tags: ["NextJS", "TypeScript", "TailwindCSS"],
     demoUrl: "https://ecommerce-plp.vercel.app/",
     githubUrl: "https://github.com/tonvlad88/ecommerce-plp",
   },
   {
     id: 8,
-    title: "Canco Cash",
-    description: "Real-time gas station promotions in Canada",
-    type: "corporate",
-    image: "/projects/canco.png",
-    tags: ["Flutter", "Bootstrap", "TypeScript", "JavaScript"],
-    demoUrl: "",
+    title: "Ice Angel",
+    description:
+      "Mobile storefront concept for a natural wellness brand, with a full browse-to-checkout flow.",
+    type: "personal",
+    role: "",
+    period: "",
+    highlights: [],
+    image: "/projects/iceangel.png",
+    tags: ["React Native", "Expo", "NodeJS", "MySQL", "REST API"],
+    demoUrl:
+      "https://drive.google.com/file/d/18whzV5bqel4WAuukzIdETokOLvBy1zKU/view?usp=drive_link",
     githubUrl: "",
-    googlePlaystoreUrl:
-      "https://play.google.com/store/apps/details?id=com.ackroo.canco&hl=en",
-    appstoreUrl: "https://apps.apple.com/kh/app/canco-petroleum/id1523902717",
+  },
+  {
+    id: 9,
+    title: "Prime Booker",
+    description:
+      "Marketplace concept that centralises rental spaces and service facilities across Cebu.",
+    type: "personal",
+    role: "",
+    period: "",
+    highlights: [],
+    image: "/projects/primebooker.png",
+    tags: ["React Native", "Expo", "Firebase", "NodeJS", "REST API"],
+    demoUrl:
+      "https://drive.google.com/file/d/18_OUxa-1cL9tUzw2rVpgE8kZqnTP4ydx/view?usp=sharing",
+    githubUrl: "",
   },
 ];
 
+/**
+ * Proficiency is expressed in tiers rather than invented percentages —
+ * a self-rated "97%" reads as noise to an engineering hiring manager.
+ *   core       — used daily, can lead and mentor on it
+ *   proficient — shipped production work with it
+ *   familiar   — working knowledge, comfortable picking it up
+ */
+export const skillLevels = {
+  core: { label: "Core", order: 0 },
+  proficient: { label: "Proficient", order: 1 },
+  familiar: { label: "Familiar", order: 2 },
+};
+
 export const skills = [
-  // Frontent
-  { name: "Adobe Photoshop", level: 80, category: "frontend" },
-  { name: "AJAX", level: 95, category: "frontend" },
-  { name: "Bootstrap", level: 97, category: "frontend" },
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "Expo CLI", level: 100, category: "frontend" },
-  { name: "Expo Vector Icons", level: 100, category: "frontend" },
-  { name: "Flutter", level: 60, category: "frontend" },
-  { name: "Firebase", level: 80, category: "frontend" },
-  { name: "Figma", level: 75, category: "frontend" },
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "JQuery", level: 95, category: "frontend" },
-  { name: "lucide-react", level: 100, category: "frontend" },
-  { name: "NextJS", level: 60, category: "frontend" },
-  { name: "ReactJS", level: 97, category: "frontend" },
-  { name: "React Hooks", level: 90, category: "frontend" },
-  { name: "React Native", level: 98, category: "frontend" },
-  { name: "Redux", level: 85, category: "frontend" },
-  { name: "Redux Thunk", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 85, category: "frontend" },
-  { name: "Typescript", level: 90, category: "frontend" },
-  { name: "Vite", level: 95, category: "frontend" },
-  { name: "Zustand", level: 90, category: "frontend" },
+  // Mobile
+  { name: "React Native", level: "core", category: "mobile" },
+  { name: "Expo", level: "core", category: "mobile" },
+  { name: "App Store Connect", level: "core", category: "mobile" },
+  { name: "Google Play Console", level: "core", category: "mobile" },
+  { name: "Fastlane", level: "proficient", category: "mobile" },
+  { name: "Flutter", level: "familiar", category: "mobile" },
 
-  //   Backend
-  { name: "codeIgniter", level: 70, category: "backend" },
-  { name: "Fastlane", level: 80, category: "backend" },
-  { name: "GraphQL", level: 80, category: "backend" },
-  { name: "MySQL", level: 98, category: "backend" },
-  { name: "NodeJS", level: 80, category: "backend" },
-  { name: "NPM", level: 95, category: "backend" },
-  { name: "PHP", level: 95, category: "backend" },
-  { name: "PostgreSQL", level: 95, category: "backend" },
-  { name: "prisma", level: 90, category: "backend" },
-  { name: "RESTful API", level: 95, category: "backend" },
-  { name: "Typo3CMS", level: 50, category: "backend" },
+  // Web
+  { name: "TypeScript", level: "core", category: "web" },
+  { name: "JavaScript", level: "core", category: "web" },
+  { name: "ReactJS", level: "core", category: "web" },
+  { name: "HTML & CSS", level: "core", category: "web" },
+  { name: "Next.js", level: "proficient", category: "web" },
+  { name: "Redux", level: "proficient", category: "web" },
+  { name: "Zustand", level: "proficient", category: "web" },
+  { name: "Tailwind CSS", level: "proficient", category: "web" },
+  { name: "Vite", level: "proficient", category: "web" },
+  { name: "Figma", level: "familiar", category: "web" },
 
-  //   Tools & DevOps
-  { name: "Confluence", level: 90, category: "tools" },
-  { name: "FileZilla", level: 98, category: "tools" },
-  { name: "Git", level: 95, category: "tools" },
-  { name: "Github Actions", level: 80, category: "tools" },
-  { name: "Jest", level: 65, category: "tools" },
-  { name: "Jira", level: 95, category: "tools" },
-  { name: "Scrum", level: 100, category: "tools" },
-  { name: "SugarCRM", level: 50, category: "tools" },
-  { name: "SVN", level: 100, category: "tools" },
-  { name: "Trello", level: 100, category: "tools" },
-  { name: "Vercel", level: 80, category: "tools" },
+  // Backend
+  { name: "REST APIs", level: "core", category: "backend" },
+  { name: "Node.js", level: "proficient", category: "backend" },
+  { name: "GraphQL", level: "proficient", category: "backend" },
+  { name: "PostgreSQL", level: "proficient", category: "backend" },
+  { name: "MySQL", level: "proficient", category: "backend" },
+  { name: "Prisma", level: "proficient", category: "backend" },
+  { name: "Firebase", level: "proficient", category: "backend" },
+  { name: "PHP", level: "proficient", category: "backend" },
+
+  // Cloud & infrastructure
+  { name: "Vercel", level: "proficient", category: "cloud" },
+  { name: "AWS", level: "proficient", category: "cloud" },
+  { name: "DigitalOcean", level: "proficient", category: "cloud" },
+  { name: "Cloudflare", level: "proficient", category: "cloud" },
+  { name: "Neon", level: "proficient", category: "cloud" },
+  { name: "Laravel Forge", level: "proficient", category: "cloud" },
+
+  // AI tooling
+  { name: "Claude", level: "proficient", category: "ai" },
+  { name: "OpenAI", level: "proficient", category: "ai" },
+  { name: "Cursor", level: "proficient", category: "ai" },
+  { name: "CodeRabbit", level: "proficient", category: "ai" },
+
+  // Third-party services & APIs
+  { name: "Agora", level: "proficient", category: "services" },
+  { name: "PubNub", level: "proficient", category: "services" },
+  { name: "Daily.co", level: "proficient", category: "services" },
+  { name: "Bambuser", level: "proficient", category: "services" },
+  { name: "SendGrid", level: "proficient", category: "services" },
+  { name: "Shopify", level: "proficient", category: "services" },
+  { name: "PostHog", level: "proficient", category: "services" },
+  { name: "New Relic", level: "proficient", category: "services" },
+
+  // Tools & practice
+  { name: "Git", level: "core", category: "tools" },
+  { name: "GitHub", level: "core", category: "tools" },
+  { name: "Agile / Scrum", level: "core", category: "tools" },
+  { name: "GitHub Actions", level: "proficient", category: "tools" },
+  { name: "Jira", level: "proficient", category: "tools" },
+  { name: "Loom", level: "proficient", category: "tools" },
+  { name: "Jest", level: "familiar", category: "tools" },
 ];
 
-export const categories = ["all", "frontend", "backend", "tools"];
+export const categories = [
+  "all",
+  "mobile",
+  "web",
+  "backend",
+  "cloud",
+  "ai",
+  "services",
+  "tools",
+];
+
+export const categoryLabels = {
+  all: "All",
+  mobile: "Mobile",
+  web: "Web",
+  backend: "Backend",
+  cloud: "Cloud & Infra",
+  ai: "AI Tooling",
+  services: "Services & APIs",
+  tools: "Tools & Practice",
+};

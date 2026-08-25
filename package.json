@@ -1,13 +1,14 @@
 {
-  "name": "tonyportfolio.json",
+  "name": "tony-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@radix-ui/react-toast": "^1.2.15",
@@ -33,5 +34,6 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "vite": "^7.1.2"
-  }
+  },
+  "description": "Portfolio of Mark Anthony (Tony) Saromines — React Native engineer."
 }
