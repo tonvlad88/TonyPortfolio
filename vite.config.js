@@ -14,8 +14,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Keep Firebase out of the entry chunk so it only downloads when the
-        // contact form is actually submitted.
+        // React and the router change far less often than page content, so
+        // splitting them out keeps that chunk cached across deploys.
         manualChunks: {
           react: ["react", "react-dom", "react-router-dom"],
         },

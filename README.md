@@ -12,14 +12,14 @@ Personal portfolio for Mark Anthony (Tony) Saromines, React Native engineer.
 | UI         | React 19, React Router 7                  |
 | Styling    | Tailwind CSS 4 (`@theme` design tokens)   |
 | Icons      | lucide-react                              |
-| Contact    | Firestore record + Resend email relay     |
+| Contact    | Resend email relay (serverless)           |
 | Hosting    | Vercel                                    |
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env   # then fill in Firebase and Resend credentials
+cp .env.example .env   # then fill in the Resend credentials
 npm run dev
 ```
 
@@ -37,7 +37,7 @@ public/            Static assets served as-is (screenshots, résumé, robots.txt
 src/
   components/      One section per file — Hero, About, Skills, Projects, Contact
   constants/       All page content: nav, projects, skills, socials
-  lib/             firebase.js (lazy Firestore), contact.js (email relay), utils.js
+  lib/             contact.js (email relay), utils.js
 api/
   contact.js       Vercel serverless function that emails form submissions
   pages/           Home, NotFound
@@ -72,23 +72,20 @@ key in `localStorage`.
 ## Deployment
 
 Vercel builds from `main` automatically. Environment variables are set in
-**Project Settings → Environment Variables**, and split into two kinds:
+**Project Settings → Environment Variables**.
 
-- `VITE_FIREBASE_*` are baked into the client bundle at build time, so treat
-  them as public and rely on Firestore security rules for protection.
-- `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` and `CONTACT_TO_EMAIL` have no
-  `VITE_` prefix, so Vite never inlines them. They are read at request time by
-  the serverless function and stay on the server.
+`RESEND_API_KEY`, `CONTACT_FROM_EMAIL` and `CONTACT_TO_EMAIL` have no `VITE_`
+prefix, so Vite never inlines them into the bundle. They are read at request
+time by the serverless function and stay on the server. Nothing the contact
+form needs is exposed to the browser.
 
 ### Contact email
 
-A submission takes two paths. The browser writes the message to Firestore —
-that is the durable record, and a failure there is what surfaces an error toast
-to the visitor. It then POSTs the same payload to `/api/contact`, which relays
-it through [Resend](https://resend.com) to `CONTACT_TO_EMAIL` with the
-sender's address as `reply_to`. The email is best-effort: if it fails the
-message is still stored, so the visitor is never told their message was lost
-when it was not.
+A submission takes one path: the form POSTs to `/api/contact`, which relays it
+through [Resend](https://resend.com) to `CONTACT_TO_EMAIL` with the sender's
+address as `reply_to`. Your inbox is the record. Because there is no store
+behind the relay, the visitor only sees a success toast once Resend has
+accepted the message — a failure tells them to email directly instead.
 
 Resend will not let you send from an arbitrary address, because mail claiming
 to be from a domain you cannot prove you own is what spam filters exist to
@@ -106,30 +103,45 @@ Either way the visitor's own address goes in `reply_to`, never in `from`, so
 replying reaches them while the message still passes SPF and DKIM instead of
 being filtered as spoofed.
 
-Vite's dev server does not run serverless functions, so `npm run dev` will log
-a failed relay call while still saving to Firestore. Use `vercel dev` to
-exercise `/api/contact` locally.
+Vite's dev server does not run serverless functions, so `npm run dev` cannot
+send mail — submitting shows the error toast. Use `vercel dev` to exercise
+`/api/contact` locally.
 
-### Firestore rules
+### Abuse controls
 
-The contact form writes to `contactMessages` directly from the browser. The
-rules must allow creates only:
+The relay is the only endpoint the site exposes, so everything guarding the
+form lives in [`api/contact.js`](api/contact.js):
 
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /contactMessages/{id} {
-      allow create: if request.resource.data.keys().hasOnly(
-                       ['name', 'email', 'message', 'createdAt'])
-                    && request.resource.data.name is string
-                    && request.resource.data.name.size() < 200
-                    && request.resource.data.email is string
-                    && request.resource.data.email.size() < 200
-                    && request.resource.data.message is string
-                    && request.resource.data.message.size() < 5000;
-      allow read, update, delete: if false;
-    }
-  }
-}
+- **Honeypot** — a `website` field hidden from users and assistive tech. Any
+  submission that fills it gets a `200` and goes nowhere, so a bot learns
+  nothing from the response.
+- **Field sanitising** — control characters are stripped and `name`/`email`
+  are collapsed to a single line before being interpolated, so nothing a
+  visitor types can inject a mail header. Lengths are capped server-side.
+- **Origin check** — a cross-site `Origin` is rejected. Set
+  `CONTACT_ALLOWED_ORIGINS` (comma-separated) if the site is served from a
+  domain other than the request host.
+- **Throttle** — five submissions per IP per ten minutes, held in the
+  function's memory. Serverless instances do not share memory and are
+  recycled freely, so treat this as a speed bump against a naive flood, not a
+  real rate limit.
+
+The throttle and the honeypot are the weakest links: neither survives a
+determined attacker with a script. Closing that properly needs a CAPTCHA
+verified server-side ([Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/)
+is free and invisible to most visitors) plus a shared-state rate limiter or a
+WAF rule ahead of the function.
+
+### Content Security Policy
+
+[`vercel.json`](vercel.json) sets a CSP that allows no inline JavaScript
+except two hashed scripts in [`index.html`](index.html): the pre-paint theme
+script and the JSON-LD block.
+
+**Editing either one — even the whitespace — invalidates its hash and the
+browser will silently refuse to run it.** Recompute and update both values in
+the `Content-Security-Policy` header when you do:
+
+```bash
+node -e 'const fs=require("fs"),c=require("crypto");const h=fs.readFileSync("index.html","utf8");for(const m of h.matchAll(/<script(?:s[^>]*)?>([sS]*?)</script>/g)){if(!m[1].trim())continue;console.log("sha256-"+c.createHash("sha256").update(m[1],"utf8").digest("base64"))}'
 ```
