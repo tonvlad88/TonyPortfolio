@@ -17,11 +17,10 @@ export const HeroSection = () => {
 
         <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight text-balance">
           <span className="block opacity-0 animate-fade-in-delay-1">
-            Mark Anthony{" "}
-            <span className="text-primary">Saromines</span>
+            Mark Anthony <span className="text-primary">Saromines</span>
           </span>
           <span className="mt-3 block text-xl md:text-2xl font-medium text-muted-foreground opacity-0 animate-fade-in-delay-2">
-            React Native Engineer &middot; 10 years shipping cross-platform apps
+            React Native Engineer &middot; 15 years shipping cross-platform apps
           </span>
         </h1>
 

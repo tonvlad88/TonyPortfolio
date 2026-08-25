@@ -29,8 +29,11 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <p className="text-lg text-foreground">
-              I&rsquo;m Tony — a React Native engineer with ten years of
-              shipping cross-platform apps for clients across Denmark,
+              I&rsquo;m Tony — a React Native engineer with{" "}
+              <strong className="font-semibold text-foreground">
+                over fifteen years
+              </strong>{" "}
+              of shipping cross-platform apps for clients across US, Denmark,
               Singapore, Canada, and the Philippines.
             </p>
 

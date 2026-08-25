@@ -28,6 +28,81 @@ export const socials = [
  */
 export const projects = [
   {
+    id: 10,
+    title: "Spago Live",
+    description:
+      "Live shopping platform where merchants generate an embed snippet that drops a branded livestream player straight into their own site.",
+    type: "client",
+    role: "Lead Developer",
+    period: "Oct 2025 — Aug 2026",
+    highlights: [
+      "Built the snippet generator that lets a merchant embed a live stream with one block of code",
+      "Led six engineers across the web app, the mobile broadcaster, and the moderation tooling",
+    ],
+    image: "/projects/spago-live.png",
+    tags: [
+      "ReactJS",
+      "React Native",
+      "Expo",
+      "NodeJS",
+      "Agora",
+      "PubNub",
+      "Daily.co",
+    ],
+    demoUrl: "https://live.spago.com/",
+    githubUrl: "",
+  },
+  {
+    id: 11,
+    title: "Zoom Commerce Live",
+    description:
+      "Bambuser-class live commerce product pairing embeddable shoppable streams with a mobile broadcaster app.",
+    type: "client",
+    role: "Lead Developer",
+    period: "Oct 2025 — Aug 2026",
+    highlights: [
+      "Adapted the shared live-commerce core into a second product without forking the codebase",
+      "Custom moderation modules for chat, viewer bans, and pulling a stream down mid-broadcast",
+    ],
+    image: "/projects/zc-live.png",
+    tags: [
+      "ReactJS",
+      "React Native",
+      "Expo",
+      "NodeJS",
+      "Agora",
+      "PubNub",
+      "Daily.co",
+    ],
+    demoUrl: "https://live.zoomcommerce.com/",
+    githubUrl: "",
+  },
+  {
+    id: 12,
+    title: "FocusCEO",
+    description:
+      "Coaching platform with a marketing site, an authenticated web app, and a mobile companion for live sessions.",
+    type: "client",
+    role: "Lead Developer",
+    period: "Oct 2025 — Aug 2026",
+    highlights: [
+      "Live sessions over Agora, in-session chat over PubNub, and one-to-one calls over Daily.co",
+      "Kept the live-video foundation shared across three products so integration work stayed in one place",
+    ],
+    image: "/projects/focusceo.png",
+    tags: [
+      "ReactJS",
+      "React Native",
+      "Expo",
+      "NodeJS",
+      "Agora",
+      "PubNub",
+      "Daily.co",
+    ],
+    demoUrl: "https://focusceo.com/",
+    githubUrl: "",
+  },
+  {
     id: 1,
     title: "PadelLink",
     description:
