@@ -246,6 +246,7 @@ export const skills = [
   { name: "Shopify", level: "proficient", category: "services" },
   { name: "PostHog", level: "proficient", category: "services" },
   { name: "New Relic", level: "proficient", category: "services" },
+  { name: "Resend", level: "proficient", category: "services" },
 
   // Tools & practice
   { name: "Git", level: "core", category: "tools" },
