@@ -52,18 +52,18 @@
     />
 
     <!--
-      Apply the stored theme before first paint so there is no flash of the
-      wrong theme. Must stay inline and blocking.
+      Apply the theme before first paint so there is no flash of the wrong one.
+      Dark is the default — the starfield backdrop is the site's identity — so
+      only an explicit choice by the visitor switches to light.
+      Must stay inline and blocking.
     -->
     <script>
       (function () {
         try {
-          var stored = localStorage.getItem("theme");
-          var prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-          ).matches;
-          var useDark = stored ? stored === "dark" : prefersDark;
-          document.documentElement.classList.toggle("dark", useDark);
+          document.documentElement.classList.toggle(
+            "dark",
+            localStorage.getItem("theme") !== "light"
+          );
         } catch (e) {
           document.documentElement.classList.add("dark");
         }

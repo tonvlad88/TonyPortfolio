@@ -63,8 +63,9 @@ block. Add a new color in three places: the `--color-*` alias in `@theme`, then
 the raw value under both `:root` and `.dark`.
 
 The theme is applied by an inline script in `index.html` **before first paint**
-so there is no flash of the wrong theme. It honours `prefers-color-scheme` on a
-first visit and the stored `theme` key afterwards.
+so there is no flash of the wrong theme. Dark is the default; light applies only
+when the visitor has explicitly toggled it, which is stored under the `theme`
+key in `localStorage`.
 
 ## Deployment
 
