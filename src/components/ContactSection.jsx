@@ -6,6 +6,7 @@ import "react-toastify/ReactToastify.css";
 import { cn } from "@/lib/utils";
 import { socials } from "@/constants";
 import { saveContactMessage } from "@/lib/firebase";
+import { sendContactEmail } from "@/lib/contact";
 
 const socialIcons = { github: Github, linkedin: Linkedin, twitch: Twitch };
 
@@ -32,11 +33,20 @@ export const ContactSection = () => {
 
     setIsSubmitting(true);
 
+    const submission = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
+
     try {
-      await saveContactMessage({
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim(),
+      // Firestore is the durable record, so this one has to succeed.
+      await saveContactMessage(submission);
+
+      // The email is only a notification — if it fails the message is still
+      // saved, so log it and let the visitor go on believing they are done.
+      sendContactEmail(submission).catch((error) => {
+        console.error("Failed to send contact email:", error);
       });
 
       toast.success("Thanks — your message is through. I'll reply soon.");
