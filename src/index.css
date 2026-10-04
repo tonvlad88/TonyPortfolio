@@ -33,6 +33,17 @@
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
   --animate-meteor: meteor 5s linear infinite backwards;
   --animate-grow: grow 1.5s ease-out;
+  --animate-marquee: marquee 38s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* The track holds two identical copies, so half its width is one loop */
+      transform: translateX(-50%);
+    }
+  }
 
   @keyframes float {
     0%,
@@ -223,6 +234,45 @@
     transparent
   );
   box-shadow: 0 0 10px 5px hsl(var(--star) / 0.3);
+}
+
+/*
+ * Scroll reveal — see components/Reveal.jsx. Elements start in their
+ * variant's hidden state and settle when they enter the viewport.
+ */
+.reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal[data-revealed="false"].reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.reveal[data-revealed="false"].reveal-blur {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(18px);
+}
+
+.reveal[data-revealed="false"].reveal-clip {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(24px);
+}
+
+/* Soft edges for the tech marquee */
+.mask-fade-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
 }
 
 #root {

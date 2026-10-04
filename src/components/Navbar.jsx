@@ -50,7 +50,7 @@ export const Navbar = () => {
       >
         <a
           className="text-xl font-bold text-primary flex items-center shrink-0"
-          href="#hero"
+          href="/#hero"
         >
           <span className="text-glow text-foreground">TonyPH</span>
           <span className="ml-1.5 font-medium text-muted-foreground">

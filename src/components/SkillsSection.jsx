@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/Reveal";
+import { TechMarquee } from "@/components/TechMarquee";
 import { categories, categoryLabels, skillLevels, skills } from "@/constants";
 
 const levelStyles = {
@@ -27,11 +29,18 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 px-4 bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          My <span className="text-primary">Skills</span>
-        </h2>
+        <Reveal variant="clip">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+            My <span className="text-primary">Skills</span>
+          </h2>
+        </Reveal>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <Reveal
+          as="p"
+          variant="blur"
+          delay={100}
+          className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+        >
           Grouped by how deep I actually go, not by a number I made up.{" "}
           <strong className="font-medium text-foreground">Core</strong> is what
           I use daily and can lead on,{" "}
@@ -39,7 +48,7 @@ export const SkillsSection = () => {
           what I have shipped production work with, and{" "}
           <strong className="font-medium text-foreground">Familiar</strong> is
           where I am comfortable but still learning.
-        </p>
+        </Reveal>
 
         <div
           role="tablist"
@@ -66,8 +75,8 @@ export const SkillsSection = () => {
         </div>
 
         <div className="space-y-10">
-          {grouped.map(({ level, label, items }) => (
-            <div key={level}>
+          {grouped.map(({ level, label, items }, index) => (
+            <Reveal key={level} delay={index * 80}>
               <h3 className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
                 {label}
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
@@ -90,10 +99,12 @@ export const SkillsSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
+
+      <TechMarquee />
     </section>
   );
 };

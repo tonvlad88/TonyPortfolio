@@ -30,7 +30,7 @@ export const Footer = () => {
           })}
 
           <a
-            href="#hero"
+            href="#top"
             aria-label="Back to top"
             className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
           >

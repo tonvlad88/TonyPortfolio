@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 
+import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 import { socials } from "@/constants";
 import { sendContactEmail } from "@/lib/contact";
@@ -64,19 +65,26 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary">Touch</span>
-        </h2>
+        <Reveal variant="clip">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+            Get In <span className="text-primary">Touch</span>
+          </h2>
+        </Reveal>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <Reveal
+          as="p"
+          variant="blur"
+          delay={100}
+          className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+        >
           Hiring, contracting, or just want to compare notes on React Native?
           Send a message and I&rsquo;ll get back to you within one or two
           business days.
-        </p>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact details */}
-          <div className="space-y-8">
+          <Reveal className="space-y-8">
             <h3 className="text-2xl font-semibold">Contact Information</h3>
 
             <div className="space-y-6">
@@ -129,10 +137,13 @@ export const ContactSection = () => {
                 })}
               </ul>
             </div>
-          </div>
+          </Reveal>
 
           {/* Contact form */}
-          <div className="bg-card text-card-foreground p-8 rounded-lg border border-border">
+          <Reveal
+            delay={120}
+            className="bg-card text-card-foreground p-8 rounded-lg border border-border"
+          >
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -218,7 +229,7 @@ export const ContactSection = () => {
                 shared or used for marketing.
               </p>
             </form>
-          </div>
+          </Reveal>
         </div>
 
         <ToastContainer
