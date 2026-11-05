@@ -20,16 +20,17 @@ export const HeroSection = () => {
             Mark Anthony <span className="text-primary">Saromines</span>
           </span>
           <span className="mt-3 block text-xl md:text-2xl font-medium text-muted-foreground opacity-0 animate-fade-in-delay-2">
-            React Native Engineer &middot; 15 years shipping cross-platform apps
+            Mobile &amp; Modern Web App Developer &middot; 15 years shipping
+            apps
           </span>
         </h1>
 
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty opacity-0 animate-fade-in-delay-3">
-          I build mobile apps that make it all the way to the store and stay on
-          people&rsquo;s home screens — live on the App Store and Google Play
-          across sports, retail loyalty, parenting, and field services. I care
-          about the parts users feel: fast startup, work-anywhere offline
-          behaviour, and interfaces that never make anyone think.
+          I build mobile apps that make it to the App Store and Google Play,
+          and modern web apps that businesses run on — from live shopping
+          platforms to booking and payments SaaS. I care about the parts users
+          feel: fast load times, flows that work on any device, and interfaces
+          that never make anyone think.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-delay-4">

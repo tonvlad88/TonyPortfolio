@@ -1,6 +1,6 @@
 # Tony Saromines — Portfolio
 
-Personal portfolio for Mark Anthony (Tony) Saromines, React Native engineer.
+Personal portfolio for Mark Anthony (Tony) Saromines, mobile and modern web app developer.
 
 **Live:** https://tonyph-portfolio.vercel.app
 

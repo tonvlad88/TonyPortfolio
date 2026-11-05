@@ -39,6 +39,110 @@ export const socials = [
  */
 export const projects = [
   {
+    id: 17,
+    title: "FitnessFlowHub",
+    description:
+      "Multi-tenant booking and payments SaaS for Zumba, dance, stepboard, and yoga instructors: every studio gets its own booking link, schedule, and admin dashboard.",
+    type: "personal",
+    category: "web",
+    role: "Founder & Full-stack Developer",
+    period: "Nov 2026 — present",
+    highlights: [
+      "Tenant isolation enforced in Postgres with Row Level Security, and every booking, capacity, and credit change done in locked SQL functions",
+      "Append-only audit trail written by database triggers, with reason-required, read-only support mode for platform admins",
+    ],
+    image: "/projects/fitnessflowhub.png",
+    tags: [
+      "NextJS",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "TailwindCSS",
+      "shadcn/ui",
+      "Zod",
+      "Vitest",
+    ],
+    demoUrl: "https://fitnessflowhub.app/",
+    githubUrl: "",
+    slug: "fitnessflowhub",
+    caseStudy: {
+      category: "SaaS platform",
+      year: "2026",
+      tagline:
+        "One link for fitness instructors to run schedules, bookings, and payments.",
+      overview:
+        "FitnessFlowHub turns the CMS Step & Shine booking system into a platform any fitness instructor can sign up for. Each studio gets a public page at fitnessflowhub.app/<slug> with a booking portal, a client area for credits, and a dashboard for schedules, rosters, top-ups, announcements, team, and settings. Platform admins oversee every studio from a separate console.",
+      challenge:
+        "Many studios share one database, so a bug in the app must never leak one studio's clients or money to another. Payments are cash at class or GCash top-ups approved by hand, so credits, capacity, and bookings have to stay consistent even when two people book the last spot at once.",
+      solution:
+        "A Next.js 16 rebuild of CMS Step & Shine on Supabase. Tenant isolation lives in Postgres Row Level Security rather than in app code. Money, capacity, and booking changes go only through SQL functions that lock the class row, and tables like bookings and the credit ledger can't be written directly. Database triggers write an append-only audit log, and platform admins enter a studio only through a reason-required, audit-logged support mode.",
+      results: [
+        "A studio can sign up and take bookings from its own link in minutes",
+        "Clients book classes, pay cash or top up credits by GCash, and add classes to their calendar",
+        "Tenant isolation and money rules enforced in the database, covered by tests on an in-process Postgres",
+        // TODO (Tony): add an outcome — studios onboarded, bookings per week
+      ],
+      metrics: [], // TODO (Tony)
+      screenshots: [
+        { src: "", caption: "Studio booking portal" },
+        { src: "", caption: "Studio dashboard" },
+        { src: "", caption: "Platform admin console" },
+      ],
+    },
+  },
+  {
+    id: 13,
+    title: "CMS Step & Shine",
+    description:
+      "Class booking system for a step dance and fitness studio: a mobile web app for members and a desktop control center for the studio.",
+    type: "client",
+    category: "web",
+    role: "Full-stack Developer",
+    period: "Sep 2026 — present",
+    highlights: [
+      "Live “Who's Stepping” pad grid with +1 guests and a waitlist where freed pads are held for the admin to assign",
+      "Admin control center for cash collection, approvals, scheduling, and a CSV-exportable audit trail",
+    ],
+    image: "/projects/step-shine.png",
+    tags: [
+      "NextJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Neon",
+      "Drizzle ORM",
+      "UploadThing",
+      "Zod",
+      "Vitest",
+    ],
+    demoUrl: "https://cms-step-shine-booking.vercel.app/",
+    githubUrl: "",
+    slug: "cms-step-shine",
+    caseStudy: {
+      category: "Booking system",
+      year: "2026",
+      tagline:
+        "Class booking for a step dance studio, built for the phone in a member's hand.",
+      overview:
+        "Members of CMS Step & Shine book a stepper pad and up to three guests from their phone, chat with the studio about a session, and climb a kudos leaderboard. Studio admins approve members, schedule classes, collect payments, post announcements, and review a full audit trail from a desktop control center.",
+      challenge:
+        "A class has a fixed number of stepper pads, members bring guests, and payment happens in cash at the venue or through GCash top-ups. Bookings, waitlists, payments, and refunds all had to stay consistent with each other, under rules like a 24-hour cancellation window and a minimum class size, with a record of who changed what.",
+      solution:
+        "A Next.js 16 app where Server Actions and the JSON API share one service layer, so every business rule lives in exactly one place. Each write runs in a database transaction together with its audit-log entry, on Neon PostgreSQL via Drizzle. Zod validates every input, a proxy layer rate-limits and blocks scanner traffic, UploadThing stores images, and a daily cron deletes payment receipts after 30 days.",
+      results: [
+        "Members book pads, add guests, and join waitlists from their phone",
+        "Admins run cash collection, approvals, scheduling, and announcements from one dashboard",
+        "Every admin and member action lands in a searchable, exportable audit trail",
+        // TODO (Tony): add an outcome — members onboarded, sessions booked per week
+      ],
+      metrics: [], // TODO (Tony)
+      screenshots: [
+        { src: "", caption: "“Who's Stepping” session screen" },
+        { src: "", caption: "Admin dashboard" },
+        { src: "", caption: "Kudos ranking" },
+      ],
+    },
+  },
+  {
     id: 10,
     title: "Spago Live",
     description:
@@ -246,58 +350,6 @@ export const projects = [
         { src: "", caption: "Marketing site" },
         { src: "", caption: "Live group session" },
         { src: "", caption: "Mobile companion app" },
-      ],
-    },
-  },
-  {
-    id: 13,
-    title: "CMS Step & Shine",
-    description:
-      "Class booking system for a step dance and fitness studio: a mobile web app for members and a desktop control center for the studio.",
-    type: "client",
-    category: "web",
-    role: "Full-stack Developer",
-    period: "Sep 2026 — present",
-    highlights: [
-      "Live “Who's Stepping” pad grid with +1 guests and a waitlist that promotes automatically on cancellation",
-      "Admin control center for cash collection, approvals, scheduling, and a CSV-exportable audit trail",
-    ],
-    image: "/projects/step-shine.png",
-    tags: [
-      "NextJS",
-      "TypeScript",
-      "PostgreSQL",
-      "Neon",
-      "Drizzle ORM",
-      "UploadThing",
-      "Zod",
-      "Vitest",
-    ],
-    demoUrl: "https://cms-step-shine-booking.vercel.app/",
-    githubUrl: "",
-    slug: "cms-step-shine",
-    caseStudy: {
-      category: "Booking system",
-      year: "2026",
-      tagline:
-        "Class booking for a step dance studio, built for the phone in a member's hand.",
-      overview:
-        "Members of CMS Step & Shine book a stepper pad and up to three guests from their phone, chat with the studio about a session, and climb a kudos leaderboard. Studio admins approve members, schedule classes, collect payments, post announcements, and review a full audit trail from a desktop control center.",
-      challenge:
-        "A class has a fixed number of stepper pads, members bring guests, and payment happens in cash at the venue or through GCash top-ups. Bookings, waitlists, payments, and refunds all had to stay consistent with each other, under rules like a 24-hour cancellation window and a minimum class size, with a record of who changed what.",
-      solution:
-        "A Next.js 16 app where Server Actions and the JSON API share one service layer, so every business rule lives in exactly one place. Each write runs in a database transaction together with its audit-log entry, on Neon PostgreSQL via Drizzle. Zod validates every input, a proxy layer rate-limits and blocks scanner traffic, UploadThing stores images, and a daily cron deletes payment receipts after 30 days.",
-      results: [
-        "Members book pads, add guests, and join waitlists from their phone",
-        "Admins run cash collection, approvals, scheduling, and announcements from one dashboard",
-        "Every admin and member action lands in a searchable, exportable audit trail",
-        // TODO (Tony): add an outcome — members onboarded, sessions booked per week
-      ],
-      metrics: [], // TODO (Tony)
-      screenshots: [
-        { src: "", caption: "“Who's Stepping” session screen" },
-        { src: "", caption: "Admin dashboard" },
-        { src: "", caption: "Kudos ranking" },
       ],
     },
   },
@@ -610,6 +662,9 @@ export const skills = [
   { name: "Redux", level: "proficient", category: "web" },
   { name: "Zustand", level: "proficient", category: "web" },
   { name: "Tailwind CSS", level: "proficient", category: "web" },
+  { name: "shadcn/ui", level: "proficient", category: "web" },
+  { name: "Zod", level: "proficient", category: "web" },
+  { name: "React Hook Form", level: "proficient", category: "web" },
   { name: "Vite", level: "proficient", category: "web" },
   { name: "Figma", level: "familiar", category: "web" },
 
@@ -620,6 +675,8 @@ export const skills = [
   { name: "PostgreSQL", level: "proficient", category: "backend" },
   { name: "MySQL", level: "proficient", category: "backend" },
   { name: "Prisma", level: "proficient", category: "backend" },
+  { name: "Drizzle ORM", level: "proficient", category: "backend" },
+  { name: "Supabase", level: "proficient", category: "backend" },
   { name: "Firebase", level: "proficient", category: "backend" },
   { name: "PHP", level: "proficient", category: "backend" },
 
@@ -647,6 +704,7 @@ export const skills = [
   { name: "PostHog", level: "proficient", category: "services" },
   { name: "New Relic", level: "proficient", category: "services" },
   { name: "Resend", level: "proficient", category: "services" },
+  { name: "UploadThing", level: "proficient", category: "services" },
 
   // Tools & practice
   { name: "Git", level: "core", category: "tools" },
@@ -656,6 +714,7 @@ export const skills = [
   { name: "Jira", level: "proficient", category: "tools" },
   { name: "Loom", level: "proficient", category: "tools" },
   { name: "Jest", level: "familiar", category: "tools" },
+  { name: "Vitest", level: "proficient", category: "tools" },
 ];
 
 // The scrolling strip under the skills grid — the stack people hire me for.

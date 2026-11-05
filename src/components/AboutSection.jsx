@@ -10,7 +10,7 @@ const focusAreas = [
   {
     icon: Code,
     title: "Web Engineering",
-    body: "React and Next.js front ends backed by Node, REST, and GraphQL services, built for the constraints that bite in production: real-device performance, accessibility, and code a teammate can pick up six months later.",
+    body: "Full-stack React and Next.js apps on Node, PostgreSQL, and Supabase — from live shopping platforms to multi-tenant booking and payments SaaS — built for the constraints that bite in production: real-device performance, accessibility, and code a teammate can pick up six months later.",
   },
   {
     icon: Briefcase,
@@ -70,19 +70,19 @@ export const AboutSection = () => {
           {/* Story */}
           <Reveal variant="blur" delay={100} className="space-y-6">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
-              Senior React Native Engineer
+              Mobile &amp; Modern Web App Developer
             </p>
 
             <h3 className="text-2xl md:text-3xl font-bold leading-tight text-balance">
-              From first commit to the App Store &mdash; and every release
-              after.
+              From first commit to the App Store and the browser &mdash; and
+              every release after.
             </h3>
 
             <p className="text-lg text-foreground">
-              I&rsquo;m Tony, a React Native engineer with{" "}
+              I&rsquo;m Tony, a mobile and web app developer with{" "}
               <strong className="font-semibold">over fifteen years</strong> of
-              shipping cross-platform apps for clients in the US, Denmark,
-              Singapore, Canada, and the Philippines.
+              shipping apps for clients in the US, Denmark, Singapore, Canada,
+              and the Philippines.
             </p>
 
             <p className="text-muted-foreground">
@@ -118,7 +118,7 @@ export const AboutSection = () => {
             </dl>
 
             <p className="text-muted-foreground">
-              Currently open to senior mobile roles and selective freelance
+              Currently open to senior mobile and web roles and selective freelance
               work, comfortable across European and Asian time zones.
             </p>
 
