@@ -39,6 +39,58 @@ export const socials = [
  */
 export const projects = [
   {
+    id: 18,
+    title: "Forever Moore Events",
+    description:
+      "Booking website for an events venue with several branches: guests browse halls, check live availability, and send a booking request that staff confirm personally.",
+    type: "client",
+    category: "web",
+    role: "Full-stack Developer",
+    period: "Nov 2026 — present",
+    highlights: [
+      "Double-booking made impossible in Postgres: a unique index on hall, date, and time block, plus a locked booking function that checks capacity, lead time, and set-up buffers",
+      "Per-hall booking rules (time slots, lead time, buffers, blocked dates) stored as data, so nothing about a venue is hardcoded",
+    ],
+    image: "/projects/forevermoore-events.png",
+    tags: [
+      "NextJS",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "TailwindCSS",
+      "Framer Motion",
+      "React Hook Form",
+      "Zod",
+    ],
+    demoUrl: "https://forevermoore-events.vercel.app/",
+    githubUrl: "",
+    slug: "forevermoore-events",
+    caseStudy: {
+      category: "Booking website",
+      year: "2026",
+      tagline:
+        "An events venue website where guests can check a date and request it in minutes.",
+      overview:
+        "Forever Moore Events runs event halls for weddings, debuts, and other celebrations across several branches. The site lets guests browse branches and halls, see which dates and time slots are free, compare packages and add-ons, and send a booking request. Staff then confirm each request personally. Guests get a booking reference and a private receipt link.",
+      challenge:
+        "Halls are booked by time of day, and different slots can overlap. A whole-day booking clashes with a morning one, and some halls need set-up time between events. Dates are also taken by phone and Facebook, outside the website. The site had to show accurate availability and make sure two guests could never book the same hall and slot at once.",
+      solution:
+        "A Next.js 16 App Router site on Supabase. Each slot takes up ordered blocks of the day, and a partial unique index on hall, date, and block makes double-booking impossible no matter who inserts the row. Guests book only through a SQL function that checks the hall, slot, capacity, lead time, and buffer under an advisory lock, then returns a reference number and a secret receipt token. Row Level Security keeps the bookings table hidden from the public and limits each branch admin to their own branch. The site also runs without a database, using typed seed data, so the client could review a full demo early.",
+      results: [
+        "Guests check availability on a keyboard-accessible calendar and send a request in a few steps",
+        "Per-hall rules, blocked dates, and packages are managed as data, ready for an admin panel",
+        "Reduced-motion support, smooth scrolling on desktop only, and accessible colour contrast throughout",
+        // TODO (Tony): add an outcome once the client launches — requests per month, launch date
+      ],
+      metrics: [], // TODO (Tony)
+      screenshots: [
+        { src: "", caption: "Homepage" },
+        { src: "", caption: "Hall availability calendar" },
+        { src: "", caption: "Booking request flow" },
+      ],
+    },
+  },
+  {
     id: 17,
     title: "FitnessFlowHub",
     description:
