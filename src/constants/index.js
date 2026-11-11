@@ -98,7 +98,7 @@ export const projects = [
     type: "personal",
     category: "web",
     role: "Founder & Full-stack Developer",
-    period: "Nov 2026 — present",
+    period: "October 2026 — present",
     highlights: [
       "Tenant isolation enforced in Postgres with Row Level Security, and every booking, capacity, and credit change done in locked SQL functions",
       "Append-only audit trail written by database triggers, with reason-required, read-only support mode for platform admins",
@@ -304,7 +304,8 @@ export const projects = [
     caseStudy: {
       category: "Live commerce",
       year: "2025",
-      tagline: "A Bambuser-class live shopping product, built on a shared core.",
+      tagline:
+        "A Bambuser-class live shopping product, built on a shared core.",
       overview:
         "Zoom Commerce Live pairs embeddable, shoppable livestreams with an iOS and Android app, aimed at brands that want Bambuser-style live selling under their own control.",
       challenge:
@@ -370,14 +371,7 @@ export const projects = [
       "Kept the live-video foundation shared across three products so integration work stayed in one place",
     ],
     image: "/projects/focusceo.png",
-    tags: [
-      "ReactJS",
-      "Flutter",
-      "NodeJS",
-      "Agora",
-      "PubNub",
-      "Daily.co",
-    ],
+    tags: ["ReactJS", "Flutter", "NodeJS", "Agora", "PubNub", "Daily.co"],
     demoUrl: "https://focusceo.com/",
     githubUrl: "",
     slug: "focusceo",
