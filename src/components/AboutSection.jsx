@@ -22,9 +22,9 @@ const focusAreas = [
 // Every figure here is countable from the résumé and the projects list.
 const stats = [
   { value: "15+", label: "Years shipping software" },
-  { value: "7", label: "Apps published to the stores" },
+  { value: "10+", label: "Apps published to the stores" },
   { value: "5", label: "Countries served" },
-  { value: "3", label: "Live-streaming products led" },
+  { value: "8", label: "Projects Team Lead" },
 ];
 
 export const AboutSection = () => {
@@ -118,8 +118,8 @@ export const AboutSection = () => {
             </dl>
 
             <p className="text-muted-foreground">
-              Currently open to senior mobile and web roles and selective freelance
-              work, comfortable across European and Asian time zones.
+              Currently open to senior mobile and web roles and selective
+              freelance work, comfortable across European and Asian time zones.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
